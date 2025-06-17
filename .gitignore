@@ -1,0 +1,49 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.pyt
+*.pyd
+
+# SQLite database and logs
+*.db
+*.sqlite3
+*.log
+*.bak
+*.db-journal
+*.sqlite
+
+# Environment files
+.env
+*.env
+
+# Docker files
+*.pid
+*.sock
+docker-compose.override.yml
+
+# Python environments
+.venv/
+env/
+venv/
+ENV/
+.Python
+pip-log.txt
+
+# Testing output
+htmlcov/
+.coverage
+.tox/
+.nox/
+pytest_cache/
+
+# VS Code and IDEs
+.vscode/
+.idea/
+*.swp
+
+# Mac and Linux system files
+.DS_Store
+Thumbs.db
