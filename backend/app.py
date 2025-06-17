@@ -6,7 +6,7 @@ from datetime import datetime
 app = Flask(__name__, template_folder="../frontend/templates", static_folder="../frontend/static")
 app.secret_key = 'supersecretkey'
 DB_PATH = 'database/users.db'
-LOG_PATH = 'database/injection_attempts.log'
+LOG_PATH = 'logs/injection_attempts.log'
 
 def init_db():
     if not os.path.exists(DB_PATH):
