@@ -29,8 +29,11 @@ def index():
 @app.route('/login-vuln', methods=['GET', 'POST'])
 def login_vulnerable():
     if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
+        username = request.form['username'].strip()
+        password = request.form['password'].strip()
+
+        if not username or not password:
+            return render_template('result.html', message="Username and Password are required (vulnerable login)")
 
         query = f"SELECT * FROM users WHERE username='{username}' AND password='{password}'"
         try:
@@ -56,8 +59,11 @@ def login_vulnerable():
 @app.route('/login-safe', methods=['GET', 'POST'])
 def login_secure():
     if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
+        username = request.form['username'].strip()
+        password = request.form['password'].strip()
+
+        if not username or not password:
+            return render_template('result.html', message="Username and Password are required (secure login)")
 
         conn = sqlite3.connect(DB_PATH)
         c = conn.cursor()
