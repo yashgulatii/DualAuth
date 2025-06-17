@@ -44,6 +44,4 @@ pytest_cache/
 .idea/
 *.swp
 
-# Mac and Linux system files
-.DS_Store
-Thumbs.db
+
