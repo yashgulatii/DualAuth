@@ -3,9 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>SQL Injection Awareness</title>
 </head>
 <body>
-    
+      <img src="/static/banner.png" class="banner" alt="DualAuth Logo">
+    <h1>SQL Injection Awareness</h1>
+
+    <p>SQL Injection (SQLi) is a critical security vulnerability that occurs when user-controlled input is incorrectly handled within SQL queries. It allows attackers to manipulate queries in a way that may lead to unauthorized access, data leakage, or complete system compromise.</p>
+
+    <h2>Understanding the Threat</h2>
+    <p>SQL Injection can affect any application that uses SQL databases and accepts input from users without proper validation or parameterization. This includes login forms, search bars, URL parameters, and more.</p>
+
+    <h3>Common Consequences of SQL Injection</h3>
+    <ul>
+        <li>Bypassing authentication controls (e.g., login without credentials)</li>
+        <li>Extracting sensitive data (e.g., usernames, passwords, credit card numbers)</li>
+        <li>Modifying or deleting database records</li>
+        <li>Executing administrative operations (e.g., DROP TABLE, SHUTDOWN)</li>
+        <li>In some cases, gaining remote shell access or pivoting inside the network</li>
+    </ul>
+
+    <h2>Exploitation Example</h2>
+    <p>A typical vulnerable SQL query might look like this:</p>
+    <pre>SELECT * FROM users WHERE username = '<b>[input]</b>' AND password = '<b>[input]</b>';</pre>
+
+    <p>If the input for username is:</p>
+    <pre>' OR '1'='1</pre>
+
+    <p>The resulting query becomes:</p>
+    <pre>SELECT * FROM users WHERE username = '' OR '1'='1' AND password = '';</pre>
+
+    <p>This condition always evaluates to true, allowing unauthorized login.</p>
+
+    <h2>Prevention Techniques</h2>
+    <p>Proper mitigation of SQL Injection vulnerabilities involves adopting multiple best practices:</p>
+    <ul>
+        <li><strong>Use Parameterized Queries (Prepared Statements):</strong> Never construct SQL queries using string concatenation. Instead, use placeholders and bind values safely.</li>
+        <li><strong>Input Validation and Whitelisting:</strong> Validate inputs based on type, format, and length. Reject anything outside expected patterns.</li>
+        <li><strong>Least Privilege Principle:</strong> Ensure the database user has only the permissions required — avoid using accounts with administrative privileges.</li>
+        <li><strong>Use ORMs (Object-Relational Mappers):</strong> Frameworks like SQLAlchemy or Django ORM inherently mitigate many injection risks.</li>
+        <li><strong>Error Handling:</strong> Avoid displaying raw SQL errors to users. Use custom error pages and log incidents securely.</li>
+    </ul>
+
+    <h2>Real-World Incidents</h2>
+    <ul>
+        <li><strong>TalkTalk (2015):</strong> A basic SQL injection attack led to a breach affecting over 150,000 customers.</li>
+        <li><strong>Sony Pictures (2011):</strong> Hackers exploited SQL injection to access thousands of usernames, passwords, and personal information.</li>
+        <li><strong>Heartland Payment Systems (2008):</strong> One of the largest data breaches, involving over 130 million credit card numbers, started with SQLi.</li>
+    </ul>
+
+    <h2>Further Reading and References</h2>
+    <ul>
+        <li><a href="https://owasp.org/www-community/attacks/SQL_Injection" target="_blank">OWASP SQL Injection Guide</a></li>
+        <li><a href="https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html" target="_blank">OWASP SQLi Prevention Cheat Sheet</a></li>
+        <li><a href="https://portswigger.net/web-security/sql-injection" target="_blank">PortSwigger: SQL Injection Explained</a></li>
+        <li><a href="https://www.acunetix.com/websitesecurity/sql-injection/" target="_blank">Acunetix: What is SQL Injection?</a></li>
+    </ul>
+
+    <p><a class="back-link" href="/">&lt; Return to Home</a></p>
+
 </body>
 </html>
+
+
+<style>
+    body {
+        background-color: #1E1616;
+        color: white;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: auto;
+        padding: 2.55%;
+    }
+    h1 {
+        color: purple;
+        font-size: 350%;
+    }
+    h2 {
+        color: white;
+        font-size: 250%;
+    }
+    h3 {
+        color: white;
+        font-size: 150%;
+    }
+    p {
+        color: white;
+        font-size: 150%;
+    }
+    .back-link {
+        color: white;
+        font-size: 135%;
+    }
+    a{
+        color: white;
+        font-size: 100%;
+    }
+    .banner {
+    max-width: 70%;
+    height: 50%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
+</style>

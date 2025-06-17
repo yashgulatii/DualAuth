@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+  <img src="/static/banner.png" class="banner" alt="DualAuth Logo">
+  <h2>Welcome, {{ username }}</h2>
+
+  {% if hacked %}
+    <p style="color: red;"><strong>Congrats!</strong> You exploited the vulnerable login!</p>
+  {% else %}
+    <p>You logged in normally using secure authentication.</p>
+  {% endif %}
+
+  <p><a href="/">&lt; Back to Home</a></p>
+</body>
+</html>
+
+
+<style>
+    body {
+        background-color: #1E1616;
+        color: white;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: auto;
+        padding: 2.55%;
+    }
+    h2 {
+        color: white;
+        font-size: 250%;
+    }
+    p {
+        color: white;
+        font-size: 150%;
+    }
+    a{
+        color: white;
+        font-size: 100%;
+    }
+    .banner {
+    max-width: 70%;
+    height: 50%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    }
+</style>

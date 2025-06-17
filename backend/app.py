@@ -5,12 +5,13 @@ from datetime import datetime
 
 app = Flask(__name__, template_folder="../frontend/templates", static_folder="../frontend/static")
 app.secret_key = 'supersecretkey'
-DB_PATH = 'database/users.db'
+DB_PATH = 'backend/database/users.db'
 LOG_PATH = 'backend/logs/injection_attempts.log'
+exploit = False
 
 def init_db():
     if not os.path.exists(DB_PATH):
-        os.makedirs("database", exist_ok=True)
+        os.makedirs("backend/database", exist_ok=True)
         conn = sqlite3.connect(DB_PATH)
         c = conn.cursor()
         c.execute("CREATE TABLE users (username TEXT, password TEXT)")
@@ -31,11 +32,9 @@ def login_vulnerable():
     if request.method == 'POST':
         username = request.form['username'].strip()
         password = request.form['password'].strip()
-
-        if not username or not password:
-            return render_template('result.html', message="Username and Password are required (vulnerable login)")
-
+        
         query = f"SELECT * FROM users WHERE username='{username}' AND password='{password}'"
+
         try:
             conn = sqlite3.connect(DB_PATH)
             c = conn.cursor()
@@ -62,9 +61,6 @@ def login_secure():
         username = request.form['username'].strip()
         password = request.form['password'].strip()
 
-        if not username or not password:
-            return render_template('result.html', message="Username and Password are required (secure login)")
-
         conn = sqlite3.connect(DB_PATH)
         c = conn.cursor()
         c.execute("SELECT * FROM users WHERE username=? AND password=?", (username, password))
@@ -86,6 +82,8 @@ def dashboard():
 
     # Assume a basic check that SQLi-style bypass likely happened
     hacked = (mode == 'vulnerable' and "'" in username)
+    if "'" in username:
+        username = username.split("'")[0]
 
     return render_template('dashboard.html', username=username, hacked=hacked)
 
