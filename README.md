@@ -70,6 +70,6 @@ pytest tests/
 
 ##  Learn More
 
-- [Docs/documentation.md](Docs/documentation.md)
+- [docs/documentation.md](docs/documentation.md)
 - [OWASP SQL Injection](https://owasp.org/www-community/attacks/SQL_Injection)
 - [PortSwigger SQLi](https://portswigger.net/web-security/sql-injection)
