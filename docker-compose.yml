@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  dualauth:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./backend:/app/backend
+      - ./frontend/templates:/app/frontend/templates
+      - ./frontend/static:/app/frontend/static
+    restart: unless-stopped
