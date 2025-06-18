@@ -1,4 +1,4 @@
-# DualAuth – SQL Injection Demonstration WebApp
+![logo](/frontend/static/banner.png)
 
 **DualAuth** is an educational web application that demonstrates both **vulnerable** and **secure** login systems, helping users understand the dangers of SQL Injection (SQLi) and how to prevent them. This project provides hands-on experience for both Red Team and Blue Team perspectives.
 
@@ -70,6 +70,6 @@ pytest tests/
 
 ##  Learn More
 
-- [docs/documentation.md](docs/documentation.md)
+- [docs/documentation.md](Docs/documentation.md)
 - [OWASP SQL Injection](https://owasp.org/www-community/attacks/SQL_Injection)
 - [PortSwigger SQLi](https://portswigger.net/web-security/sql-injection)
